@@ -33,7 +33,7 @@ class FragmentFullPathDescription : Fragment() {
 
         binding.pathOpen.setOnClickListener {
             MainActivity.path = item.pathUUID
-            val directions = FragmentFullPathDescriptionDirections.actionFragmentFullPathDescriptionToViewerMapFragment()
+            val directions = FragmentFullPathDescriptionDirections.actionFragmentFullPathDescriptionToViewerMapFragment() // Переход на карту с прорисованным путём
 
             findNavController().navigate(directions)
         }
