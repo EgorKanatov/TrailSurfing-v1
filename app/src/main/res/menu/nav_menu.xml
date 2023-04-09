@@ -4,7 +4,7 @@
         android:id="@+id/viewerMapFragment"
         android:icon="@drawable/map_48px"
         android:title="Карты"
-          
+       
         />
     <item
         android:id="@+id/fragmentAllPaths"
