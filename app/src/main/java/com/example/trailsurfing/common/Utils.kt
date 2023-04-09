@@ -25,7 +25,7 @@ class Utils {
                         ID_CHANNEL,
                         "Служба определения местоположения",
                         NotificationManager.IMPORTANCE_DEFAULT
-                    )
+                    ) // Создание уведомления
                 )
             }
 
@@ -40,7 +40,7 @@ class Utils {
                 0,
                 repealIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
-            ) //stop
+            ) //Остановка сервиса
 
             val builder = NotificationCompat.Builder(context, ID_CHANNEL)
             return builder.apply {
@@ -50,7 +50,7 @@ class Utils {
                 setContentText("Производим запись вашего пути")
                 setSmallIcon(R.drawable.trail_48px)
                 setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            }.build() // уведомление
+            }.build() // Создание шаблона уведомления записи местоположения пользователя
         }
 
         fun isServiceRunning(context: Context, serviceClass: Class<*>): Boolean {
