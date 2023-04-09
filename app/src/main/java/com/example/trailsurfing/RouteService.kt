@@ -28,7 +28,7 @@ class RouteService : Service() {
     @SuppressLint("MissingPermission")
     override fun onCreate() {
         reference = Firebase.database.reference
-        reference = FirebaseDatabase.getInstance().getReference("ItemsList").child(MainActivity.login)
+        reference = FirebaseDatabase.getInstance().getReference("ItemsList").child(MainActivity.login) // Создание пути до папки пользователя
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -40,10 +40,10 @@ class RouteService : Service() {
         }
 
         locationCallback = object : LocationCallback() {
-            override fun onLocationResult(p0: LocationResult) {
+            override fun onLocationResult(p0: LocationResult) { // Получение местоположения пользователя
                 super.onLocationResult(p0)
 
-                list.add(Point(p0.lastLocation?.latitude, p0.lastLocation?.longitude))
+                list.add(Point(p0.lastLocation?.latitude, p0.lastLocation?.longitude)) // Заполнение списка коодинатами
 
                 startForeground(
                     Utils.CURRENT_NOTIFICATION_ID,
@@ -75,9 +75,9 @@ class RouteService : Service() {
             if (repealLocationTrackingFromNotification) {
                 fusedLocationProviderClient.removeLocationUpdates(locationCallback)
 
-                MainActivity.route.pathUUID = list
+                MainActivity.route.pathUUID = list // Добавление списка координат в класс
 
-                reference.push().setValue(MainActivity.route)
+                reference.push().setValue(MainActivity.route) // Добавление списка координат в класс
 
 
                 stopSelf()
