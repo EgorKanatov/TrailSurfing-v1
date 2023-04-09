@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/viewerMapFragment">
+
+    <fragment
+        android:id="@+id/viewerMapFragment"
+        android:name="com.example.trailsurfing.map.ViewerMapFragment"
+        android:label="ViewerMapFragment" >
+        <action
+            android:id="@+id/action_viewerMapFragment_to_fragmentPathCreate"
+            app:destination="@id/fragmentPathCreate" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAllPaths"
+        android:name="com.example.trailsurfing.fragments.FragmentAllPaths"
+        android:label="FragmentAllPaths" >
+        <action
+            android:id="@+id/action_fragmentAllPaths_to_fragmentFullPathDescription2"
+            app:destination="@id/fragmentFullPathDescription" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFullPathDescription"
+        android:name="com.example.trailsurfing.fragments.FragmentFullPathDescription"
+        android:label="FragmentFullPathDescription">
+        <argument
+            android:name="item"
+            app:argType="com.example.trailsurfing.data.Route" />
+        <action
+            android:id="@+id/action_fragmentFullPathDescription_to_viewerMapFragment"
+            app:destination="@id/viewerMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPathCreate"
+        android:name="com.example.trailsurfing.fragments.FragmentPathCreate"
+        android:label="FragmentPathCreate" >
+        <action
+            android:id="@+id/action_fragmentPathCreate_to_viewerMapFragment"
+            app:destination="@id/viewerMapFragment" />
+    </fragment>
+</navigation>

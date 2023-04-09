@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/viewerMapFragment"
+        android:icon="@drawable/map_48px"
+        android:title="Карты"
+        />
+    <item
+        android:id="@+id/fragmentAllPaths"
+        android:icon="@drawable/trail_48px"
+        android:title="Пути" />
+
+</menu>
