@@ -31,7 +31,6 @@ class FragmentPathCreate: Fragment() {
     private var mImageUri : Uri? = null
 
     private var mStorageRef: StorageReference? = null
-//    private var mDatabaseRef: DatabaseReference? = null
     private var mUploadTask: StorageTask<*>? = null
 
     override fun onCreateView(
@@ -46,24 +45,24 @@ class FragmentPathCreate: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("image_uploads")
-//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ItemsList")
+        mStorageRef = FirebaseStorage.getInstance().getReference("image_uploads") // Назначение начальной папки с изображениями
 
-        binding.imageButton.setOnClickListener {
+        binding.imageButton.setOnClickListener { // Выбор изображения из галереи при клике
             openFileChoose()
         }
 
-        binding.addButton.setOnClickListener {
+        binding.addButton.setOnClickListener { // Кнопка загрузки фотографии на сервер
             uploadFile()
         }
     }
 
-    private fun openFileChoose() {
+    private fun openFileChoose() { // Выбор изображения с типом jpeg
         val intent = Intent()
         intent.type = "image/jpeg"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent,1)
     }
+    
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.data != null) {
@@ -72,7 +71,7 @@ class FragmentPathCreate: Fragment() {
         }
     }
 
-    private fun uploadFile() {
+    private fun uploadFile() { // Загрузка на сервер
         if (mImageUri != null) {
 
             val fileReference = mStorageRef!!.child(
@@ -82,14 +81,14 @@ class FragmentPathCreate: Fragment() {
             mUploadTask = fileReference.putFile(mImageUri!!)
                 .addOnSuccessListener { taskSnapshot ->
                     fileReference.downloadUrl.addOnSuccessListener {
-                        MainActivity.route = Route(
+                        MainActivity.route = Route( // Подготовка данных для загрузки
                             title = binding.pathName.text.toString(),
                             description = binding.pathDescription.text.toString(),
                             imageUrl = it.toString(),
                             uuid = MainActivity.login
                         )
 
-                        requireActivity().startService(Intent(context, RouteService::class.java))
+                        requireActivity().startService(Intent(context, RouteService::class.java)) // Старт сервиса записи местоположения
 
 
                         val directions = FragmentPathCreateDirections.actionFragmentPathCreateToViewerMapFragment()
