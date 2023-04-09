@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         if(login == "Anon"){
             login = UUID.randomUUID().toString()
-            editor.apply { //Save userId
+            editor.apply { //Сохранение UUID пользователя
                 putString("login", login)
             }.apply()
         }
