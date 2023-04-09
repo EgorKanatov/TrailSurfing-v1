@@ -50,10 +50,6 @@ class FragmentAllPaths : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        Log.d("rewrwer", Recomendlist.size.toString())
-        super.onViewCreated(view, savedInstanceState)
-
         //переход из фрагмента со всеми путями в описание путя по клику
         val onClick = object : OnItemClickListner<Route> {
             override fun onClick(view: View, item: Route) {
@@ -63,13 +59,9 @@ class FragmentAllPaths : Fragment() {
             }
         }
 
-        routes.observe(viewLifecycleOwner, Observer {
-            println("Done!")
 
-        })
-        routes.observe(viewLifecycleOwner, Observer {
+        routes.observe(viewLifecycleOwner, Observer { // Создание items
             println("Done!")
-
             binding.pathsList.adapter = UniversalRecyclerViewAdapter<Route>(R.layout.cardview_path_layout, it, onClick)
         })
 
